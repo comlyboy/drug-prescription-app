@@ -1,1 +1,223 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* @import '~@angular/material/prebuilt-themes/deeppurple-amber.css'; */
+
+@import url('../node_modules/bootstrap/dist/css/bootstrap.min.css');
+/* html, body {
+    height: 100%;
+} */
+
+body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Lato', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, Nuni !important;
+    text-rendering: optimizeLegibility;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+a:hover {
+    text-decoration: none !important;
+}
+
+mat-icon {
+    vertical-align: middle !important;
+}
+
+.text-small {
+    font-weight: 600 !important;
+    font-size: 13px !important;
+}
+
+.text-mute {
+    color: #8189a9 !important;
+}
+
+.text-handy {
+    color: #4a6ee0 !important;
+}
+
+.bg-handy {
+    background-color: #4a6ee0 !important;
+}
+
+.btn-handy {
+    background-color: #4a6ee0 !important;
+    color: white !important;
+}
+
+.btn-handy:hover {
+    background-color: #224bd5 !important;
+}
+
+.btn-green {
+    background-color: #12b886 !important;
+    color: white !important;
+}
+
+.btn-green:hover {
+    background-color: #17ac7f !important;
+}
+
+.bg-green {
+    background-color: #12b886 !important;
+    border-color: #12b886 !important;
+}
+
+.text-green {
+    color: #12b886 !important;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.handy-button {
+    box-shadow: 0 2px 2px rgba(155, 158, 160, 0.796), 0 0 2px rgb(145, 147, 149) !important;
+}
+
+.handy-button:hover {
+    box-shadow: 0 8px 8px rgba(255, 255, 255, 0.24), 0 0 8px rgba(255, 255, 255, 0.12) !important;
+}
+
+.handy-border {
+    border: solid #ffffff 1.5px;
+}
+
+.handy-border:hover {
+    /* transform: scale(1.05) translateY(-3px); */
+    transition: ease-in .3s;
+    border: solid #748ee0 1.5px;
+}
+
+.handy-card {
+    border-radius: 15px !important;
+    box-shadow: 0 0 35px 0 rgba(0, 0, 0, .11) !important;
+}
+
+.form-control.ng-invalid.ng-touched {
+    border-color: rgb(230, 48, 24);
+    animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* .mat-drawer-backdrop.mat-drawer-shown {
+    visibility: hidden !important;
+} */
+
+@keyframes shake {
+    10%, 90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+    20%, 80% {
+        transform: translate3d(2px, 0, 0);
+    }
+    30%, 50%, 70% {
+        transform: translate3d(-7px, 0, 0);
+    }
+    40%, 60% {
+        transform: translate3d(7px, 0, 0);
+    }
+}
+
+/* General */
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 9999;
+    color: white;
+}
+
+.handy-table-body {
+    font-weight: 600 !important;
+    font-size: 13.5px;
+}
+
+.handy-table-body tr:hover {
+    color: #6c757d !important;
+}
+
+/* media query section */
+
+/* Extra small devices (phones, 600px and down) */
+
+@media only screen and (max-width: 420px) {
+    .details-card {
+        min-width: 310px !important;
+    }
+}
+
+@media only screen and (min-width: 420px) {
+    .details-card {
+        min-width: 380px !important;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+
+@media only screen and (min-width: 600px) {
+    .details-card {
+        max-width: 500px !important;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+
+@media only screen and (min-width: 768px) {
+    .details-card {
+        width: 500px !important;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+
+@media only screen and (min-width: 992px) {}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+
+@media only screen and (min-width: 1200px) {
+    .details-card {
+        width: 500px !important;
+    }
+}
+
+/* media query section ends */
+
+.swal2-popup.swal2-toast.swal2-show {
+    border-radius: 40px;
+    width: 250px !important;
+    border: solid #bdc3d6 1.5px !important;
+}
+
+.flickerr {
+    -webkit-animation: flicker 2s infinite;
+    animation: flicker 2s infinite;
+}
+
+@keyframes flicker {
+    20% {
+        opacity: .5;
+    }
+    40% {
+        opacity: 0;
+    }
+    60% {
+        opacity: .5;
+    }
+    80% {
+        opacity: .5;
+    }
+    100% {
+        opacity: .5;
+    }
+}
