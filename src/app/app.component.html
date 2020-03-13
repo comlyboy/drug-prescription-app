@@ -1,1 +1,37 @@
-<router-outlet></router-outlet>
+<mat-drawer-container class="containerr" autosize>
+    <mat-drawer #drawer class="sidebar lead font-weight-bold" mode="side" [opened]="userIsAuthenticated">
+
+        <div class="sidebar-content">
+            <div class="text-center py-3 p-0">
+                <p class="text-handy h4 mb-0">{{ title }}</p>
+            </div>
+            <hr class="mt-0">
+
+            <ul class="mb-5 pl-0 pt-5">
+
+                <li matRipple>
+                    <a class="h6 mb-0" routerLink="/dashboard" routerLinkActive="current">
+                        <mat-icon class="mr-2">dashboard</mat-icon>Dashboard
+                    </a>
+                </li>
+
+                <li matRipple>
+                    <a class="h6 mb-0" routerLink="/patients" routerLinkActive="current">
+                        <mat-icon class="mr-2">face</mat-icon>Patients
+                    </a>
+                </li>
+
+                <li matRipple>
+                    <a class="h6 mb-0" routerLink="/prescriptions" routerLinkActive="current">
+                        <mat-icon class="mr-2">description</mat-icon>Prescriptions
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </mat-drawer>
+    <div>
+        <router-outlet></router-outlet>
+    </div>
+
+</mat-drawer-container>

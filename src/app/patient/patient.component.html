@@ -1,0 +1,161 @@
+<app-header></app-header>
+
+<div class="container-fluid px-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb my-4 py-1">
+            <li *ngIf="viewMode == 'list'" class="breadcrumb-item active h5 mb-0" aria-current="page">Patients
+                <span class="ml-2 badge badge-info bg-handy">{{ totalPatients }}</span>
+            </li>
+            <li *ngIf="viewMode == 'edit'" class="breadcrumb-item active h5" aria-current="page">Editing any
+                <!-- {{ branch?.name | titlecase }} -->
+            </li>
+            <li *ngIf="viewMode == 'new'" class="breadcrumb-item active h5" aria-current="page">New branch
+            </li>
+        </ol>
+    </nav>
+</div>
+
+
+<div class="container" *ngIf="viewMode == 'list'">
+    <div class="row d-flex justify-content-end">
+
+        <div class="col-sm-12 col-md-6 col-lg-9 col-xl-9">
+            <div class="input-group my-1">
+                <input type="text" class="form-control form-control-lg rounded-0"
+                    (change)="onSearchInput($event.target.value)" name="filtersearch" ngModel autocomplete="off"
+                    placeholder="Search branch...">
+                <div class="input-group-prepend">
+                    <button matRipple class="btn btn-handy">
+                        <mat-icon>search</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3">
+            <button (click)="viewMode = 'new'" matRipple class="btn ml-auto btn-lg btn-handy my-1 w-100">
+                <mat-icon>add</mat-icon> Add Patient
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="viewMode == 'list'" class="container-fluid">
+    <div class="row">
+        <div class="col-4">
+            <div class="card handy-card my-2">
+                <div class="card-body">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sapiente veritatis voluptatem
+                    recusandae rem vel totam exercitationem labore aperiam nihil! Culpa inventore illo eius similique
+                    fugiat eligendi ullam, nihil quas?
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card handy-card my-2">
+                <div class="card-body">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sapiente veritatis voluptatem
+                    recusandae rem vel totam exercitationem labore aperiam nihil! Culpa inventore illo eius similique
+                    fugiat eligendi ullam, nihil quas?
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card handy-card my-2">
+                <div class="card-body">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sapiente veritatis voluptatem
+                    recusandae rem vel totam exercitationem labore aperiam nihil! Culpa inventore illo eius similique
+                    fugiat eligendi ullam, nihil quas?
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card handy-card my-2">
+                <div class="card-body">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sapiente veritatis voluptatem
+                    recusandae rem vel totam exercitationem labore aperiam nihil! Culpa inventore illo eius similique
+                    fugiat eligendi ullam, nihil quas?
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card handy-card my-2">
+                <div class="card-body">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sapiente veritatis voluptatem
+                    recusandae rem vel totam exercitationem labore aperiam nihil! Culpa inventore illo eius similique
+                    fugiat eligendi ullam, nihil quas?
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card handy-card my-2">
+                <div class="card-body">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sapiente veritatis voluptatem
+                    recusandae rem vel totam exercitationem labore aperiam nihil! Culpa inventore illo eius similique
+                    fugiat eligendi ullam, nihil quas?
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<div *ngIf="viewMode == 'new'" class="container mt-0 p-5 d-flex justify-content-center">
+    <div class="card handy-card text-muted" style="width: 30rem;">
+        <div class="card-header h5 bg-transparent text-handy">New Branch</div>
+        <div class="card-body text-center px-5">
+            <form (submit)="onSubmitPatient(branchForm)" #branchForm="ngForm">
+
+                <div class="h6 text-left mt-4 mb-1">Name</div>
+                <div class="input-group">
+                    <div class="input-group-prepend bg-light" *ngIf="name.touched && name.valid">
+                        <span class="input-group-text bg-white">
+                            <mat-icon class="text-green">done_all</mat-icon>
+                        </span>
+                    </div>
+                    <input type="text" class="form-control form-control-lg" name="inputName" ngModel required
+                        minlength="3" autocomplete="off" placeholder="Name..." #name="ngModel" required>
+                </div>
+                <div class="alert alert-dark p-1 m-0" *ngIf="name.touched && !name.valid">
+                    <div *ngIf="name.errors.required">
+                        This field is required.
+                    </div>
+                    <div *ngIf="name.errors.minlength">
+                        Minimum 3 characters needed.
+                    </div>
+                </div>
+
+                <div class="h6 text-left mt-4 mb-1">Description</div>
+                <div class="input-group">
+                    <div class="input-group-prepend bg-light" *ngIf="description.touched && description.valid">
+                        <span class="input-group-text bg-white">
+                            <mat-icon class="text-green">done_all</mat-icon>
+                        </span>
+                    </div>
+                    <input type="text" class="form-control form-control-lg rounded-0 bg-transparent"
+                        name="inputDescription" ngModel required minlength="3" autocomplete="off"
+                        placeholder="Description..." #description="ngModel" required>
+                </div>
+                <div class="alert alert-dark p-1 m-0" *ngIf="description.touched && !description.valid">
+                    <div *ngIf="description.errors.required">
+                        This field is required.
+                    </div>
+                    <div *ngIf="description.errors.minlength">
+                        Minimum 3 characters needed.
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end mb-2">
+                    <button (click)="viewMode = 'list'" mat-raised-button
+                        class="btn btn-danger btn-lg mt-5 mr-2">Cancel</button>
+
+                    <button mat-raised-button type="submit" class="btn btn-handy btn-lg mt-5 ml-3 py-1"
+                        [disabled]="!branchForm.valid">Submit</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

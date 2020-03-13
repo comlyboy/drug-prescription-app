@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrescriptionComponent implements OnInit {
 
+  totalPrescriptions: number = 0
+  
   constructor() { }
 
   ngOnInit(): void {
