@@ -8,12 +8,11 @@ export class NotificationService {
 
   constructor() { }
 
-  
 
   success(message) {
     const toast = Swal.mixin({
       toast: true,
-      position: 'top',
+      position: 'top-end',
       showConfirmButton: false,
       timer: 5000,
       grow: 'column'
@@ -24,10 +23,11 @@ export class NotificationService {
       title: message
     })
   }
+
   smallSuccess(message) {
     const toast = Swal.mixin({
       toast: true,
-      position: 'top',
+      position: 'top-end',
       showConfirmButton: false,
       timer: 5000,
       grow: 'column'

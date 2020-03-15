@@ -5,6 +5,7 @@
         <form (submit)="onLogin(loginForm)" #loginForm="ngForm">
             <div class="card-body py-5 text-muted">
 
+                <div class="h6 text-left mt-4 mb-1">Username</div>
                 <div class="input-group mt-2">
                     <div class="input-group-prepend bg-light" *ngIf="userName.touched && userName.valid">
                         <span class="input-group-text bg-white">
@@ -28,6 +29,7 @@
                     </div>
                 </div>
 
+                <div class="h6 text-left mt-4 mb-1">Password</div>
                 <div class="input-group mt-2">
                     <div class="input-group-prepend bg-light" *ngIf="password.touched && password.valid">
                         <span class="input-group-text bg-white">

@@ -1,71 +1,211 @@
 <!-- <app-header></app-header> -->
+<app-header></app-header>
 
 <div class="container-fluid px-5">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb my-4 py-1">
-            <li class="breadcrumb-item active h5 mb-0" aria-current="page">Prescriptions
+            <li *ngIf="viewMode == 'list'" class="breadcrumb-item active h5 mb-0" aria-current="page">Prescriptions
                 <span class="ml-2 badge badge-info bg-handy">{{ totalPrescriptions }}</span>
+            </li>
+            <li *ngIf="viewMode == 'new'" class="breadcrumb-item active h5 mb-0" aria-current="page">New Prescriptions
+            </li>
+            <li *ngIf="viewMode == 'edit'" class="breadcrumb-item active h5 mb-0" aria-current="page">Edit Prescriptions
             </li>
         </ol>
     </nav>
 </div>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-4">
-            <div class="card handy-card my-2">
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sapiente veritatis voluptatem
-                    recusandae rem vel totam exercitationem labore aperiam nihil! Culpa inventore illo eius similique
-                    fugiat eligendi ullam, nihil quas?
-                </div>
-            </div>
+<div *ngIf="viewMode == 'list'" class="container-fluid">
+    <div class="row d-flex justify-content-end my-4 px-5">
+        <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3">
+            <button (click)="onAdd()" matRipple class="btn ml-auto btn-lg btn-handy my-1 w-100">
+                <mat-icon>add</mat-icon> Add Patient
+            </button>
         </div>
-        <div class="col-4">
-            <div class="card handy-card my-2">
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sapiente veritatis voluptatem
-                    recusandae rem vel totam exercitationem labore aperiam nihil! Culpa inventore illo eius similique
-                    fugiat eligendi ullam, nihil quas?
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="card handy-card my-2">
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sapiente veritatis voluptatem
-                    recusandae rem vel totam exercitationem labore aperiam nihil! Culpa inventore illo eius similique
-                    fugiat eligendi ullam, nihil quas?
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="card handy-card my-2">
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sapiente veritatis voluptatem
-                    recusandae rem vel totam exercitationem labore aperiam nihil! Culpa inventore illo eius similique
-                    fugiat eligendi ullam, nihil quas?
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="card handy-card my-2">
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sapiente veritatis voluptatem
-                    recusandae rem vel totam exercitationem labore aperiam nihil! Culpa inventore illo eius similique
-                    fugiat eligendi ullam, nihil quas?
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="card handy-card my-2">
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sapiente veritatis voluptatem
-                    recusandae rem vel totam exercitationem labore aperiam nihil! Culpa inventore illo eius similique
-                    fugiat eligendi ullam, nihil quas?
-                </div>
-            </div>
-        </div>
+    </div>
+    <table class="table table-bordered m-0">
+        <thead class="bg-handy text-light">
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Date</th>
+                <th scope="col">Drug Name</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Formular</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody class="bg-white handy-table-body text-muted" *ngIf="prescriptions.length > 0">
+            <tr *ngFor="let prescription of prescriptions">
+                <td>{{ prescription?.createdAt | date:'mediumDate' }},
+                    {{ prescription?.createdAt | date:'shortTime' }}
+                </td>
+                <td>{{ prescription?.createdAt | date:'mediumDate' }},
+                    {{ prescription?.createdAt | date:'shortTime' }}
+                </td>
+                <td>{{ prescription?.createdAt | date:'mediumDate' }},
+                    {{ prescription?.createdAt | date:'shortTime' }}
+                </td>
+                <td>{{ prescription?.createdAt | date:'mediumDate' }},
+                    {{ prescription?.createdAt | date:'shortTime' }}
+                </td>
+                <td>{{ prescription?.createdAt | date:'mediumDate' }},
+                    {{ prescription?.createdAt | date:'shortTime' }}
+                </td>
 
+                <td class="py-0">
+                    <div class="d-flex justify-content-around my-1">
+                        <div matRipple matTooltip="Edit prescription details?" matTooltipPosition="above"
+                            class="pointer action-edit p-2">
+                            <mat-icon>edit</mat-icon>
+                        </div>
+
+                        <div [routerLink]="['/prescriptions', prescription._id]" matRipple matTooltip="See details?"
+                            matTooltipPosition="above" class="pointer action-open p-2">
+                            <mat-icon>launch</mat-icon>
+                        </div>
+
+                        <div matRipple matTooltip="Help" matTooltipPosition="above" class="pointer action-delete p-2"
+                            matTooltip="Delete prescription?" matTooltipPosition="above">
+                            <mat-icon>delete</mat-icon>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+<div *ngIf="viewMode == 'new'" class="container mt-5">
+    <div class="card handy-card">
+        <div class="card-header bg-transparent">
+            <div class="h5 mb-0 text-handy">New Prescription</div>
+        </div>
+        <div class="card-body">
+
+            <form (submit)="onSubmitPrescription(prescriptionForm)" #prescriptionForm="ngForm">
+                <div class="row">
+                    
+                    <div class="col-6">
+                        <div class="h6 text-left mt-4 mb-1">Name</div>
+                        <div class="input-group">
+                            <div class="input-group-prepend bg-light" *ngIf="name.touched && name.valid">
+                                <span class="input-group-text bg-white">
+                                    <mat-icon class="text-green">done_all</mat-icon>
+                                </span>
+                            </div>
+                            <input type="text" class="form-control form-control-lg" name="inputDrugName" ngModel
+                                required minlength="3" autocomplete="off" placeholder="Drug name..." #name="ngModel"
+                                required>
+                        </div>
+                        <div class="alert alert-dark p-1 m-0" *ngIf="name.touched && !name.valid">
+                            <div *ngIf="name.errors.required">
+                                This field is required.
+                            </div>
+                            <div *ngIf="name.errors.minlength">
+                                Minimum 3 characters needed.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-6">
+                        <div class="h6 text-left mt-4 mb-1">Name</div>
+                        <div class="input-group">
+                            <div class="input-group-prepend bg-light" *ngIf="name.touched && name.valid">
+                                <span class="input-group-text bg-white">
+                                    <mat-icon class="text-green">done_all</mat-icon>
+                                </span>
+                            </div>
+                            <input type="text" class="form-control form-control-lg" name="inputDrugName" ngModel
+                                required minlength="3" autocomplete="off" placeholder="Drug name..." #name="ngModel"
+                                required>
+                        </div>
+                        <div class="alert alert-dark p-1 m-0" *ngIf="name.touched && !name.valid">
+                            <div *ngIf="name.errors.required">
+                                This field is required.
+                            </div>
+                            <div *ngIf="name.errors.minlength">
+                                Minimum 3 characters needed.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-6">
+                        <div class="h6 text-left mt-4 mb-1">Name</div>
+                        <div class="input-group">
+                            <div class="input-group-prepend bg-light" *ngIf="name.touched && name.valid">
+                                <span class="input-group-text bg-white">
+                                    <mat-icon class="text-green">done_all</mat-icon>
+                                </span>
+                            </div>
+                            <input type="text" class="form-control form-control-lg" name="inputDrugName" ngModel
+                                required minlength="3" autocomplete="off" placeholder="Drug name..." #name="ngModel"
+                                required>
+                        </div>
+                        <div class="alert alert-dark p-1 m-0" *ngIf="name.touched && !name.valid">
+                            <div *ngIf="name.errors.required">
+                                This field is required.
+                            </div>
+                            <div *ngIf="name.errors.minlength">
+                                Minimum 3 characters needed.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-6">
+                        <div class="h6 text-left mt-4 mb-1">Name</div>
+                        <div class="input-group">
+                            <div class="input-group-prepend bg-light" *ngIf="name.touched && name.valid">
+                                <span class="input-group-text bg-white">
+                                    <mat-icon class="text-green">done_all</mat-icon>
+                                </span>
+                            </div>
+                            <input type="text" class="form-control form-control-lg" name="inputDrugName" ngModel
+                                required minlength="3" autocomplete="off" placeholder="Drug name..." #name="ngModel"
+                                required>
+                        </div>
+                        <div class="alert alert-dark p-1 m-0" *ngIf="name.touched && !name.valid">
+                            <div *ngIf="name.errors.required">
+                                This field is required.
+                            </div>
+                            <div *ngIf="name.errors.minlength">
+                                Minimum 3 characters needed.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="h6 text-left mt-4 mb-1">Description</div>
+                        <div class="input-group">
+                            <div class="input-group-prepend bg-light" *ngIf="description.touched && description.valid">
+                                <span class="input-group-text bg-white">
+                                    <mat-icon class="text-green">done_all</mat-icon>
+                                </span>
+                            </div>
+                            <textarea class="form-control form-control-lg" name="inputDescription" ngModel required
+                                minlength="3" autocomplete="off" placeholder="Description..."
+                                #description="ngModel"></textarea>
+                        </div>
+                        <div class="alert alert-dark p-1 m-0" *ngIf="description.touched && !description.valid">
+                            <div *ngIf="description.errors.required">
+                                This field is required.
+                            </div>
+                            <div *ngIf="description.errors.minlength">
+                                Minimum 3 characters needed.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end mb-2">
+                    <button (click)="viewMode = 'list'" mat-raised-button
+                        class="btn btn-danger btn-lg mt-5 mr-2">Cancel</button>
+                    <button mat-raised-button type="submit" class="btn btn-handy btn-lg mt-5 ml-3 py-1"
+                        [disabled]="!prescriptionForm.valid">Submit</button>
+                </div>
+
+            </form>
+        </div>
     </div>
 </div>

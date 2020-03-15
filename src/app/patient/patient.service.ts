@@ -19,22 +19,28 @@ export class PatientService {
     public notificationService: NotificationService
   ) { }
 
-
+  // ===========
   addPatient(
-    name: string,
-    description: string
+    firstName: string,
+    lastName: string,
+    age: number,
+    gender: string,
+    address: string
   ) {
-    const patientOBJ = {
+    const patientOBJ: IPatient = {
       _id: null,
-      name,
-      description
+      firstName,
+      lastName,
+      age,
+      gender,
+      address
     };
-
     this.http
       .post(
         `${this.API_URL}patient`, patientOBJ)
       .subscribe(() => {
         this.notificationService.success('Added successfully');
+        this.getPatients();
       });
   };
 
@@ -50,7 +56,6 @@ export class PatientService {
   }
 
   getPatients() {
-
     this.http
       .get<{
         patients: IPatient[];
@@ -65,20 +70,32 @@ export class PatientService {
       });
   };
 
+  getPatients2() {
+    return this.http.get<{
+      patients: IPatient[]
+    }>(`${this.API_URL}patient`)
+  }
+
   getPatientDetails(patientId: string) {
-    return this.http.get<IPatient>(`${this.API_URL}patient/${patientId}`);
+    return this.http.get(`${this.API_URL}patient/${patientId}`);
   }
 
 
   updatePatient(
     _id: string,
-    name: string,
-    description: string
+    firstName: string,
+    lastName: string,
+    age: number,
+    gender: string,
+    address: string
   ) {
-    const patientForEdit = {
-      _id,
-      name,
-      description
+
+    const patientForEdit: IPatient = {
+      firstName,
+      lastName,
+      age,
+      gender,
+      address
     };
     this.http
       .put(`${this.API_URL}patient/${_id}`, patientForEdit)
@@ -90,7 +107,6 @@ export class PatientService {
 
   // Deleting customer
   deletePatient(patientId: string) {
-    this.notificationService.success('Deleted Successfully');
     return this.http.delete(`${this.API_URL}patient/${patientId}`);
   }
 

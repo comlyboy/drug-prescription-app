@@ -6,197 +6,184 @@
             <li *ngIf="viewMode == 'list'" class="breadcrumb-item active h5 mb-0" aria-current="page">Patients
                 <span class="ml-2 badge badge-info bg-handy">{{ totalPatients }}</span>
             </li>
-            <li *ngIf="viewMode == 'edit'" class="breadcrumb-item active h5" aria-current="page">Editing any
-                <!-- {{ branch?.name | titlecase }} -->
+            <!-- <li *ngIf="viewMode == 'edit'" class="breadcrumb-item active h5" aria-current="page">Editing any
+                {{ patient?.name | titlecase }}
             </li>
             <li *ngIf="viewMode == 'new'" class="breadcrumb-item active h5" aria-current="page">New branch
-            </li>
+            </li> -->
         </ol>
     </nav>
 </div>
 
 
-<div class="container" *ngIf="viewMode == 'list'">
-    <div class="row d-flex justify-content-end py-2">
 
-        <div class="col-sm-12 col-md-6 col-lg-9 col-xl-9">
-            <div class="input-group my-1">
-                <input type="text" class="form-control form-control-lg rounded-0"
-                    (change)="onSearchInput($event.target.value)" name="filtersearch" ngModel autocomplete="off"
-                    placeholder="Search branch...">
-                <div class="input-group-prepend">
-                    <button matRipple class="btn btn-handy">
-                        <mat-icon>search</mat-icon>
-                    </button>
-                </div>
-            </div>
-        </div>
+<div *ngIf="viewMode == 'list'" class="container-fluid">
+    <div class="row d-flex justify-content-end my-4">
         <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3">
             <button (click)="viewMode = 'new'" matRipple class="btn ml-auto btn-lg btn-handy my-1 w-100">
                 <mat-icon>add</mat-icon> Add Patient
             </button>
         </div>
     </div>
-</div>
-
-
-<div *ngIf="viewMode == 'list'" class="container-fluid">
     <div class="row">
 
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-            <div class="card handy-card text-muted my-2">
+        <div *ngFor="let patient of patients" class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+            <div class="card handy-border handy-card text-muted my-2">
                 <div class="card-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sapiente veritatis voluptatem
-                    recusandae rem vel totam exercitationem labore aperiam nihil.
-                </div>
-            </div>
-        </div>
 
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-            <div class="card handy-card text-muted my-2">
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sapiente veritatis voluptatem
-                    recusandae rem vel totam exercitationem labore aperiam nihil.
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-            <div class="card handy-card text-muted my-2">
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sapiente veritatis voluptatem
-                    recusandae rem vel totam exercitationem labore aperiam nihil.
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-            <div class="card handy-card text-muted my-2">
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sapiente veritatis voluptatem
-                    recusandae rem vel totam exercitationem labore aperiam nihil.
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-            <div class="card handy-card text-muted my-2">
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sapiente veritatis voluptatem
-                    recusandae rem vel totam exercitationem labore aperiam nihil.
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-            <div class="card handy-card text-muted my-2">
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sapiente veritatis voluptatem
-                    recusandae rem vel totam exercitationem labore aperiam nihil.
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-            <div class="card handy-card text-muted my-2">
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sapiente veritatis voluptatem
-                    recusandae rem vel totam exercitationem labore aperiam nihil.
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-            <div class="card handy-card text-muted my-2">
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sapiente veritatis voluptatem
-                    recusandae rem vel totam exercitationem labore aperiam nihil.
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-            <div class="card handy-card text-muted my-2">
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sapiente veritatis voluptatem
-                    recusandae rem vel totam exercitationem labore aperiam nihil.
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-            <div class="card handy-card text-muted my-2">
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sapiente veritatis voluptatem
-                    recusandae rem vel totam exercitationem labore aperiam nihil.
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-            <div class="card handy-card text-muted my-2">
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sapiente veritatis voluptatem
-                    recusandae rem vel totam exercitationem labore aperiam nihil.
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-            <div class="card handy-card text-muted my-2">
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sapiente veritatis voluptatem
-                    recusandae rem vel totam exercitationem labore aperiam nihil.
+                    <div class="d-flex justify-content-between">
+                        <div [routerLink]='["/patients", patient._id]' class="h5 mb-0 text-handy pointer">
+                            {{ patient.firstName | titlecase }}
+                            {{ patient.lastName | titlecase }}
+                        </div>
+                        <div class="h6">
+                            <mat-icon matTooltip="Click for options" matTooltipPosition="above"
+                                [matMenuTriggerFor]="menu" class="pointer text-muted">expand_more
+                            </mat-icon>
+                            <mat-menu #menu="matMenu" xPosition="before" yPosition="below">
+                                <div class="font-weight-bold">
+                                    <div class="list-group-item text-green" mat-menu-item>
+                                        <mat-icon class="text-green">
+                                            edit</mat-icon>Edit
+                                    </div>
+                                    <button class="list-group-item text-danger" (click)="onDeleteDialog(patient._id)"
+                                        mat-menu-item>
+                                        <mat-icon class="text-danger">delete</mat-icon>Delete
+                                    </button>
+                                </div>
+                            </mat-menu>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <div class="text-small">{{ patient.gender | titlecase }}</div>
+                        <div class="text-small">{{ patient.age }} year(s)</div>
+                    </div>
+                    <div class="text-small mb-0">{{ patient.addedAt | date:'longDate' }},
+                        {{ patient.addedAt | date:'shortTime' }}
+                    </div>
                 </div>
             </div>
         </div>
 
     </div>
+
+    <div *ngIf="patients.length <= 0" class="text-center mt-5 text-muted lead font-italic">No patient added yet...
+    </div>
 </div>
 
 
 
-<div *ngIf="viewMode == 'new'" class="container mt-0 p-5 d-flex justify-content-center">
-    <div class="card handy-card text-muted" style="width: 30rem;">
-        <div class="card-header h5 bg-transparent text-handy">New Branch</div>
+<div *ngIf="viewMode == 'new'" class="container d-flex justify-content-center">
+    <div class="card handy-card text-muted">
+        <div class="card-header h5 bg-transparent text-handy">New Patient</div>
         <div class="card-body text-center px-5">
             <form (submit)="onSubmitPatient(branchForm)" #branchForm="ngForm">
+                <div class="row">
+                    <div class="col-6">
 
-                <div class="h6 text-left mt-4 mb-1">Name</div>
+                        <div class="h6 text-left mt-4 mb-1">Firstname</div>
+                        <div class="input-group">
+                            <div class="input-group-prepend bg-light" *ngIf="firstName.touched && firstName.valid">
+                                <span class="input-group-text bg-white">
+                                    <mat-icon class="text-green">done_all</mat-icon>
+                                </span>
+                            </div>
+                            <input type="text" class="form-control form-control-lg" name="inputFirstName" ngModel
+                                required minlength="3" autocomplete="off" placeholder="First Name..."
+                                #firstName="ngModel" required>
+                        </div>
+                        <div class="alert alert-dark p-1 m-0" *ngIf="firstName.touched && !firstName.valid">
+                            <div *ngIf="firstName.errors.required">
+                                This field is required.
+                            </div>
+                            <div *ngIf="firstName.errors.minlength">
+                                Minimum 3 characters needed.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="h6 text-left mt-4 mb-1">Last name</div>
+                        <div class="input-group">
+                            <div class="input-group-prepend bg-light" *ngIf="lastName.touched && lastName.valid">
+                                <span class="input-group-text bg-white">
+                                    <mat-icon class="text-green">done_all</mat-icon>
+                                </span>
+                            </div>
+                            <input type="text" class="form-control form-control-lg" name="inputLastName" ngModel
+                                required minlength="3" autocomplete="off" placeholder="Last Name..." #lastName="ngModel"
+                                required>
+                        </div>
+                        <div class="alert alert-dark p-1 m-0" *ngIf="lastName.touched && !lastName.valid">
+                            <div *ngIf="lastName.errors.required">
+                                This field is required.
+                            </div>
+                            <div *ngIf="lastName.errors.minlength">
+                                Minimum 3 characters needed.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="h6 text-left mt-4 mb-1">Age</div>
+                        <div class="input-group">
+                            <div class="input-group-prepend bg-light" *ngIf="age.touched && age.valid">
+                                <span class="input-group-text bg-white">
+                                    <mat-icon class="text-green">done_all</mat-icon>
+                                </span>
+                            </div>
+                            <input type="number" class="form-control form-control-lg" name="inputAge" ngModel required
+                                minlength="7" autocomplete="off" placeholder="Phone Number..." #age="ngModel">
+                        </div>
+                        <div class="alert alert-danger p-1 m-0" *ngIf="age.touched && !age.valid">
+                            <div *ngIf="age.errors.required">
+                                This field is required.
+                            </div>
+                            <div *ngIf="age.errors.minlength">
+                                Minimum 7 numbers needed.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="h6 text-left mt-4 mb-1">Gender</div>
+                        <div class="input-group">
+                            <div class="input-group-prepend bg-light" *ngIf="gender.touched && gender.valid">
+                                <span class="input-group-text bg-white">
+                                    <mat-icon class="text-green">done_all</mat-icon>
+                                </span>
+                            </div>
+                            <select class="form-control form-control-lg" name="inputGender" ngModel required
+                                #gender="ngModel">
+                                <option selected value="">Gender...</option>
+                                <option selected value="male">Male</option>
+                                <option selected value="female">Female</option>
+
+                            </select>
+                        </div>
+                        <div class="alert alert-danger p-1 m-0" *ngIf="gender.touched && !gender.valid">
+                            <div *ngIf="gender.errors.required">
+                                This field is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="h6 text-left mt-4 mb-1">Address</div>
                 <div class="input-group">
-                    <div class="input-group-prepend bg-light" *ngIf="name.touched && name.valid">
+                    <div class="input-group-prepend bg-light" *ngIf="address.touched && address.valid">
                         <span class="input-group-text bg-white">
                             <mat-icon class="text-green">done_all</mat-icon>
                         </span>
                     </div>
-                    <input type="text" class="form-control form-control-lg" name="inputName" ngModel required
-                        minlength="3" autocomplete="off" placeholder="Name..." #name="ngModel" required>
+                    <textarea class="form-control form-control-lg" name="inputAddress" ngModel required minlength="3"
+                        autocomplete="off" placeholder="Address..." #address="ngModel"></textarea>
                 </div>
-                <div class="alert alert-dark p-1 m-0" *ngIf="name.touched && !name.valid">
-                    <div *ngIf="name.errors.required">
+                <div class="alert alert-danger p-1 m-0" *ngIf="address.touched && !address.valid">
+                    <div *ngIf="address.errors.required">
                         This field is required.
                     </div>
-                    <div *ngIf="name.errors.minlength">
-                        Minimum 3 characters needed.
-                    </div>
-                </div>
-
-                <div class="h6 text-left mt-4 mb-1">Description</div>
-                <div class="input-group">
-                    <div class="input-group-prepend bg-light" *ngIf="description.touched && description.valid">
-                        <span class="input-group-text bg-white">
-                            <mat-icon class="text-green">done_all</mat-icon>
-                        </span>
-                    </div>
-                    <input type="text" class="form-control form-control-lg rounded-0 bg-transparent"
-                        name="inputDescription" ngModel required minlength="3" autocomplete="off"
-                        placeholder="Description..." #description="ngModel" required>
-                </div>
-                <div class="alert alert-dark p-1 m-0" *ngIf="description.touched && !description.valid">
-                    <div *ngIf="description.errors.required">
-                        This field is required.
-                    </div>
-                    <div *ngIf="description.errors.minlength">
+                    <div *ngIf="address.errors.minlength">
                         Minimum 3 characters needed.
                     </div>
                 </div>

@@ -1,1 +1,131 @@
-<p>patient-details works!</p>
+<app-header></app-header>
+
+<div class="container-fluid px-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb my-4 py-1">
+            <a class="breadcrumb-item text-handy h5 mb-0" routerLink="/patients" aria-current="page">Patients
+            </a>
+            <li class="breadcrumb-item active h5 mb-0" aria-current="page">{{ patient?.firstName | titlecase }}
+                {{ patient?.lastName | titlecase }}
+            </li>
+        </ol>
+    </nav>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12 col-md-4 col-lg-3 col-xl-3">
+            <div class="card handy-card">
+                <div class="card-header bg-transparent">
+                    <div class="h5 mb-0 text-handy">Bio</div>
+                </div>
+                <div class="card-body text-muted">
+                    <div class="h5 mb-2 text-center text-handy">{{ patient?.firstName | titlecase }}
+                        {{ patient?.lastName | titlecase }}</div>
+
+                    <div class="text-small text-green text-center">
+                        {{ patient?.addedAt  | date:'mediumDate' }} at
+                        {{ patient?.addedAt  | date:'shortTime' }}
+                    </div>
+
+                    <hr class="mb-0">
+                    <dl class="row mb-0 pb-0">
+                        <dt class="col-5 text-small text-mute text-right mt-1 pl-4">Gender</dt>
+                        <dd class="col-7 px-0">
+                            <div class="text-small mb-0 mt-1">
+                                {{ patient?.gender | titlecase }}
+                            </div>
+                        </dd>
+                    </dl>
+
+                    <hr class="m-0">
+                    <dl class="row mb-0 pb-0">
+                        <dt class="col-5 text-small text-mute text-right mt-1 pl-4">Age</dt>
+                        <dd class="col-7 px-0">
+                            <div class="text-small mb-0 mt-1">
+                                {{ patient?.age }} year(s) old
+                            </div>
+                        </dd>
+                    </dl>
+
+                    <hr class="m-0">
+                    <dl class="row mb-0 pb-0">
+                        <dt class="col-5 text-right">
+                            <div class="text-small text-mute mt-1 pl-4">Address</div>
+                        </dt>
+                        <dd class="col-7 px-0">
+                            <div class="text-small pointer mb-0 mt-1">
+                                {{ patient?.address}}
+                            </div>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-sm-12 col-md-8 col-lg-9 col-xl-9">
+            <div class="card handy-card">
+                <div class="card-header bg-transparent d-flex justify-content-between">
+                    <div class="h5 mb-0 text-handy">Prescriptions</div>
+                    <div class="h5 mb-0 text-handy">{{ totalPrescriptions }}</div>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered m-0">
+                        <thead class="bg-handy text-light">
+                            <tr>
+                                <th scope="col">Date</th>
+                                <th scope="col">Drug Name</th>
+                                <th scope="col">Duration</th>
+                                <th scope="col">Formular</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white handy-table-body text-muted" *ngIf="prescriptions.length > 0">
+                            <tr *ngFor="let prescription of prescriptions">
+                                <td>{{ prescription?.createdAt | date:'mediumDate' }},
+                                    {{ prescription?.createdAt | date:'shortTime' }}
+                                </td>
+                                <td>{{ prescription?.createdAt | date:'mediumDate' }},
+                                    {{ prescription?.createdAt | date:'shortTime' }}
+                                </td>
+                                <td>{{ prescription?.createdAt | date:'mediumDate' }},
+                                    {{ prescription?.createdAt | date:'shortTime' }}
+                                </td>
+                                <td>{{ prescription?.createdAt | date:'mediumDate' }},
+                                    {{ prescription?.createdAt | date:'shortTime' }}
+                                </td>
+
+                                <td class="py-0">
+                                    <div class="d-flex justify-content-around my-1">
+                                        <div matRipple matTooltip="Edit prescription details?"
+                                            matTooltipPosition="above" class="pointer action-edit p-2">
+                                            <mat-icon>edit</mat-icon>
+                                        </div>
+
+                                        <div [routerLink]="['/prescriptions', prescription._id]" matRipple
+                                            matTooltip="See details?" matTooltipPosition="above"
+                                            class="pointer action-open p-2">
+                                            <mat-icon>launch</mat-icon>
+                                        </div>
+
+                                        <div matRipple matTooltip="Help" matTooltipPosition="above"
+                                            class="pointer action-delete p-2" matTooltip="Delete prescription?"
+                                            matTooltipPosition="above">
+                                            <mat-icon>delete</mat-icon>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+
+
+                    </table>
+                    <div class="lead mt-4 text-muted font-italic d-flex justify-content-center"
+                        *ngIf="prescriptions.length <= 0">No
+                        prescription(s) added yet</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
