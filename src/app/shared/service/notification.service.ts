@@ -12,7 +12,7 @@ export class NotificationService {
   success(message) {
     const toast = Swal.mixin({
       toast: true,
-      position: 'top-end',
+      position: 'top',
       showConfirmButton: false,
       timer: 5000,
       grow: 'column'
@@ -27,7 +27,7 @@ export class NotificationService {
   smallSuccess(message) {
     const toast = Swal.mixin({
       toast: true,
-      position: 'top-end',
+      position: 'top',
       showConfirmButton: false,
       timer: 5000,
       grow: 'column'
