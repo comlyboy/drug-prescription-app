@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatRippleModule } from '@angular/material/core';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { MatRippleModule } from '@angular/material/core';
         MatMenuModule,
         MatTooltipModule,
         MatRippleModule,
+        MatToolbarModule,
     ],
 })
 
