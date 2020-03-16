@@ -82,7 +82,7 @@ export class PatientService {
 
 
   updatePatient(
-    _id: string,
+    patientId: string,
     firstName: string,
     lastName: string,
     age: number,
@@ -98,9 +98,10 @@ export class PatientService {
       address
     };
     this.http
-      .put(`${this.API_URL}patient/${_id}`, patientForEdit)
+      .put(`${this.API_URL}patient/${patientId}`, patientForEdit)
       .subscribe((result: any) => {
         this.notificationService.smallSuccess(result.message);
+        this.getPatients();
       });
   }
 

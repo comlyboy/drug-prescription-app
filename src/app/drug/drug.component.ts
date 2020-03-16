@@ -15,6 +15,7 @@ export class DrugComponent implements OnInit {
   viewMode = 'list'
   totalDrugs: number = 0;
 
+  drug: IDrug;
   drugs: IDrug[] = [];
   drugSub: Subscription;
 
@@ -23,6 +24,29 @@ export class DrugComponent implements OnInit {
     public dialogService: DialogService
   ) { }
 
+
+  onEditDrugMode(drugId: string) {
+    this.drugService.getDrugDetails(drugId)
+      .subscribe((drugData: IDrug) => {
+        this.drug = drugData
+      });
+    this.viewMode = "edit"
+  }
+
+
+  onSubmitDrugEdit(form: NgForm) {
+    this.drugService.updateDrugDetails
+      (
+        this.drug._id,
+        form.value.inputDrugName,
+        form.value.inputDescription
+      );
+
+    setTimeout(() => {
+      this.viewMode = "list"
+    }, 700);
+
+  }
 
   onSubmitDrug(form: NgForm) {
     if (form.invalid) {

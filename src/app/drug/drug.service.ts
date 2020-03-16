@@ -74,28 +74,26 @@ export class DrugService {
 
 
   getDrugDetails(drugId: string) {
-    return this.http.get<IDrug>(`${this.API_URL}patient/${drugId}`);
+    return this.http.get<IDrug>(`${this.API_URL}drug/${drugId}`);
   }
 
   updateDrugDetails(
-    _id: string,
+    drugId: string,
     name: string,
     description: string,
 
   ) {
 
-    // const patientForEdit: IPatient = {
-    //   firstName,
-    //   lastName,
-    //   age,
-    //   gender,
-    //   address
-    // };
-    // this.http
-    //   .put(`${this.API_URL}patient/${_id}`, patientForEdit)
-    //   .subscribe((result: any) => {
-    //     this.notificationService.smallSuccess(result.message);
-    //   });
+    const drugForEdit: IDrug = {
+      name,
+      description
+    };
+    this.http
+      .put(`${this.API_URL}drug/${drugId}`, drugForEdit)
+      .subscribe((result: any) => {
+        this.notificationService.smallSuccess(result.message);
+        this.getDrugs();
+      });
   }
 
   deleteDrug(drugId: string) {

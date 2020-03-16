@@ -13,6 +13,7 @@ import { DialogService } from '../shared/service/dialog.service';
 export class PatientComponent implements OnInit {
   viewMode = 'list';
 
+  patient: IPatient;
   patients: IPatient[] = [];
   totalPatients: number = 0;
 
@@ -26,6 +27,37 @@ export class PatientComponent implements OnInit {
 
   onDeleteDialog(patientId: string) {
     this.dialogService.patientDeleteDialog(patientId);
+  }
+
+
+  onSubmitPatientEdit(form: NgForm) {
+    if (form.invalid) {
+      return;
+    }
+
+    this.patientService.updatePatient
+      (
+        this.patient._id,
+        form.value.inputFirstName,
+        form.value.inputLastName,
+        form.value.inputAge,
+        form.value.inputGender,
+        form.value.inputAddress
+      );
+
+    setTimeout(() => {
+      this.viewMode = "list"
+    }, 700);
+
+  }
+
+
+  onEditPatientMode(patientId: string) {
+    this.patientService.getPatientDetails(patientId)
+      .subscribe((patientData: { patient: IPatient }) => {
+        this.patient = patientData.patient;
+      });
+    this.viewMode = "edit"
   }
 
 

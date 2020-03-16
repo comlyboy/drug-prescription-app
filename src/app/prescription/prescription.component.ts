@@ -71,7 +71,7 @@ export class PrescriptionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.initContents();
+    // this.initContents();
   }
 
   ngOnDestroy(): void {
