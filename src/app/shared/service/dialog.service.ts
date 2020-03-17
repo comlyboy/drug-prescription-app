@@ -39,11 +39,11 @@ export class DialogService {
       reverseButtons: true
     }).then((result) => {
       if (result.value) {
-        // this.prescriptionService.deletePrescription(prescriptionId)
-        //   .subscribe(() => {
-        //     this.drugService.getDrugs();
-        //     this.success()
-        //   });
+        this.prescriptionService.deletePrescription(prescriptionId)
+          .subscribe(() => {
+            this.prescriptionService.getPrescriptions();
+            this.success();
+          });
       }
     })
   };

@@ -7,6 +7,9 @@ import { environment } from '../../environments/environment';
 
 import { IPrescription } from '../interfaces/prescription';
 import { NotificationService } from '../shared/service/notification.service';
+import { IPatient } from '../interfaces/patient';
+import { IDrug } from '../interfaces/drug';
+import { IUser } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -23,19 +26,29 @@ export class PrescriptionService {
   ) { }
 
 
-  addPrescription(drugId: string) {
-    // const drugOBJ: IPrescription = {
-    //   _id: null,
-    //   name,
-    //   description
-    // };
-    // this.http
-    //   .post(
-    //     `${this.API_URL}prescription`, drugOBJ)
-    //   .subscribe(() => {
-    //     this.notificationService.success('Added successfully');
-    //     this.getsPrescription();
-    //   });
+  addPrescription(
+    formula: string,
+    duration: string,
+    drugId: string,
+    patientId: string
+  ) {
+    const prescriptionOBJ: IPrescription = {
+      _id: null,
+      formula,
+      duration,
+      drugId,
+      patientId
+    };
+
+    this.http
+      .post(
+        `${this.API_URL}prescription`, prescriptionOBJ)
+      .subscribe(() => {
+        this.notificationService.success('Added successfully');
+        setTimeout(() => {
+          this.getPrescriptions();
+        }, 800);
+      });
   }
 
 
@@ -45,11 +58,11 @@ export class PrescriptionService {
     totalPrescriptions: number
   }>();
 
-  getprescriptionsUpdateListener() {
+  getPrescriptionsUpdateListener() {
     return this.prescriptionsUpdated.asObservable();
   }
 
-  getPrescription() {
+  getPrescriptions() {
     this.http
       .get<{
         prescriptions: IPrescription[];
@@ -65,34 +78,37 @@ export class PrescriptionService {
   }
 
   getPrescriptionDetails(prescriptionId: string) {
-    return this.http.get<IPrescription>(`${this.API_URL}patient/${prescriptionId}`);
+    return this.http.get<{
+      prescription: IPrescription,
+      patient: IPatient,
+      drug: IDrug,
+      doctor: IUser
+    }>(`${this.API_URL}prescription/${prescriptionId}`);
   }
 
   updatePrescription(
-    _id: string,
-    firstName: string,
-    lastName: string,
-    age: number,
-    gender: string,
-    address: string
+    prescriptionId: string,
+    formula: string,
+    duration: string,
+    drugId: string,
+    patientId: string
   ) {
 
-    // const patientForEdit: IPatient = {
-    //   firstName,
-    //   lastName,
-    //   age,
-    //   gender,
-    //   address
-    // };
-    // this.http
-    //   .put(`${this.API_URL}patient/${_id}`, patientForEdit)
-    //   .subscribe((result: any) => {
-    //     this.notificationService.smallSuccess(result.message);
-    //   });
+    const prescriptionForEdit: IPrescription = {
+      formula,
+      duration,
+      drugId,
+      patientId
+    };
+    this.http
+      .put(`${this.API_URL}prescription/${prescriptionId}`, prescriptionForEdit)
+      .subscribe((result: any) => {
+        this.notificationService.smallSuccess(result.message);
+      });
   }
 
   deletePrescription(prescriptionId: string) {
-    return this.http.delete(`${this.API_URL}drug/${prescriptionId}`);
+    return this.http.delete(`${this.API_URL}prescription/${prescriptionId}`);
   }
 
 }
