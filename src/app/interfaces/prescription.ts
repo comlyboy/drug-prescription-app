@@ -5,6 +5,8 @@ export interface IPrescription {
     IsTaken?: boolean;
     isViewed?: boolean;
     drugId: string;
-    patientId: string
-    createdAt?: string
+    patientId: string;
+    createdAt?: string;
+    prescriptionId?: string;
+
 }

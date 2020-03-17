@@ -6,6 +6,7 @@ import { IPrescription } from '../../interfaces/prescription';
 import { IDrug } from '../../interfaces/drug';
 import { PatientService } from '../../patient/patient.service';
 import { PrescriptionService } from '../prescription.service';
+import { IUser } from 'src/app/interfaces/user';
 
 @Component({
   selector: 'app-prescription-details',
@@ -14,8 +15,10 @@ import { PrescriptionService } from '../prescription.service';
 })
 export class PrescriptionDetailsComponent implements OnInit {
   prescriptionId: string;
+
   patient: IPatient;
   drug: IDrug;
+  doctor: IUser;
   prescription: IPrescription;
 
   constructor(
@@ -31,12 +34,13 @@ export class PrescriptionDetailsComponent implements OnInit {
         .subscribe((prescriptionData: {
           prescription: IPrescription,
           patient: IPatient,
-          drug: IDrug
+          drug: IDrug,
+          doctor: IUser
         }) => {
-          console.log(prescriptionData)
           this.drug = prescriptionData.drug;
           this.patient = prescriptionData.patient;
           this.prescription = prescriptionData.prescription;
+          this.doctor = prescriptionData.doctor;
         });
     });
 

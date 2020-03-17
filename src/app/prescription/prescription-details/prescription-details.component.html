@@ -17,18 +17,22 @@
     <div class="card handy-card text-muted" style="width: 50rem;">
         <div class="card-body p-5">
             <hr>
-            <div class="d-flex">
-                <div class="h5"></div>
-                <div class="h5"></div>
+            <div class="d-flex justify-content-between">
+                <div class="h5 text-handy">{{ doctor?.firstName |titlecase }} {{ doctor?.lastName | titlecase }}</div>
+                <div class="h6">Prescription Id: <span class="ml-3">{{ prescription?.prescriptionId }}</span></div>
             </div>
-            <div class="d-flex">
-                <div class="h5"></div>
-                <div class="h5"></div>
+
+            <div class="d-flex justify-content-between">
+                <div class="h6 text-handy">Doctor / Physicial</div>
+                <div class="h6">Date: <span class="ml-3">{{ prescription?.createdAt | date:'mediumDate' }}</span>
+                </div>
             </div>
-            <div class="d-flex">
-                <div class="h5"></div>
-                <div class="h5"></div>
+
+            <div class="d-flex justify-content-between">
+                <div class="h6 text-handy">09067545423</div>
+
             </div>
+
             <hr>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo omnis ab, mollitia sunt suscipit optio fugit
             maxime. Sint aperiam quibusdam tenetur non earum, vero ipsa iste, mollitia amet, libero officia.
