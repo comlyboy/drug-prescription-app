@@ -24,7 +24,9 @@ const routes: Routes = [
   { path: 'prescriptions/:prescriptionId', component: PrescriptionDetailsComponent, canActivate: [AuthGuard] },
 
   { path: 'patients', component: PatientComponent, canActivate: [AuthGuard] },
-  { path: 'patients/:patientId', component: PatientDetailsComponent, canActivate: [AuthGuard] }
+  { path: 'patients/:patientId', component: PatientDetailsComponent, canActivate: [AuthGuard] },
+
+  { path: '**', redirectTo: 'auth' }
 
 ];
 @NgModule({

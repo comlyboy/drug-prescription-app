@@ -1,4 +1,4 @@
-<app-header></app-header>
+<!-- <app-header></app-header> -->
 
 <!-- <div class="container-fluid px-5">
     <nav aria-label="breadcrumb">
@@ -14,31 +14,43 @@
 
 
 <div class="container p-5 d-flex justify-content-center">
-    <div class="card handy-card text-muted" style="width: 50rem;">
+    <div class="card mt-5 handy-card text-muted" style="width: 50rem;">
         <div class="card-body p-5">
             <hr>
             <div class="d-flex justify-content-between">
-                <div class="h5 text-handy">{{ doctor?.firstName |titlecase }} {{ doctor?.lastName | titlecase }}</div>
+                <div class="h5 text-handy">Dr. {{ doctor?.firstName |titlecase }} {{ doctor?.lastName | titlecase }}</div>
                 <div class="h6">Prescription Id: <span class="ml-3">{{ prescription?.prescriptionId }}</span></div>
             </div>
 
             <div class="d-flex justify-content-between">
-                <div class="h6 text-handy">Doctor / Physicial</div>
-                <div class="h6">Date: <span class="ml-3">{{ prescription?.createdAt | date:'mediumDate' }}</span>
+                <div class="h6">Doctor / Physicial</div>
+                <div class="h6">Date: <span class="ml-4">{{ prescription?.createdAt | date:'mediumDate' }}</span>
                 </div>
             </div>
 
             <div class="d-flex justify-content-between">
-                <div class="h6 text-handy">09067545423</div>
+                <div class="h6">09067545423</div>
 
             </div>
 
             <hr>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo omnis ab, mollitia sunt suscipit optio fugit
-            maxime. Sint aperiam quibusdam tenetur non earum, vero ipsa iste, mollitia amet, libero officia.
+            <div class="h6 font-weight-bold"> {{ prescription?.formula }} of {{ drug?.name }}, to be taken
+                {{ prescription?.duration }}. </div>
             <hr>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo omnis ab, mollitia sunt suscipit optio fugit
-            maxime. Sint aperiam quibusdam tenetur non earum, vero ipsa iste, mollitia amet, libero officia.
+            <div class="row">
+                <div class="col-2">
+                    <div class="h6 text-handy">Name.</div>
+                    <div class="h6 text-handy">Age.</div>
+                    <div class="h6 text-handy">Gender.</div>
+                    <div class="h6 text-handy">Address</div>
+                </div>
+                <div class="col-10">
+                    <div class="h6">{{ patient?.firstName |titlecase }} {{ patient?.lastName | titlecase }}</div>
+                    <div class="h6">{{ patient?.age }}</div>
+                    <div class="h6">{{ patient?.gender | titlecase }}</div>
+                    <div class="h6">{{ patient?.address | titlecase }}</div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

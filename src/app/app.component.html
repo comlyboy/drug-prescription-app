@@ -37,6 +37,34 @@
 
     </mat-drawer>
     <div>
+        <mat-toolbar class="my-toolbar sticky-top bg-white container-fluid">
+
+            <!-- <a class="pointer ml-3 text-handy" (click)="drawer.toggle()">
+                <mat-icon>reorder</mat-icon>
+            </a> -->
+            <div class="d-flex justify-content-between">
+                <div class="h5">
+                    <mat-icon class="text-handy">power</mat-icon>
+                </div>
+
+                <!-- <div class="ml-auto mr-5 pointer" mat-icon-button [matMenuTriggerFor]="menu">
+                    <mat-icon class="text-handy">account_circle</mat-icon>
+                </div>
+                <mat-menu #menu="matMenu" xPosition="before">
+                    <ng-template matMenuContent>
+                        <div class="card-body text-center text-mute p-0">
+                            <ul class="list-group list-group-flush">
+        
+                                <li matRipple (click)="onLogout()"
+                                    class="list-group-item list-group-item-action pointer h6 px-5 py-3">
+                                    Logout</li>
+                            </ul>
+                        </div>
+                    </ng-template>
+                </mat-menu> -->
+            </div>
+        
+        </mat-toolbar>
         <router-outlet></router-outlet>
     </div>
 

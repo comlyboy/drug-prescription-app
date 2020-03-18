@@ -1,4 +1,4 @@
-<app-header></app-header>
+<!-- <app-header></app-header> -->
 
 <div class="container-fluid px-5">
     <nav aria-label="breadcrumb">
@@ -15,75 +15,29 @@
         <div class="col-4">
             <div class="card handy-card my-2">
                 <div class="card-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sapiente veritatis voluptatem
-                    recusandae rem vel totam exercitationem labore aperiam nihil! Culpa inventore illo eius similique
-                    fugiat eligendi ullam, nihil quas?
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="card handy-card my-2">
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sapiente veritatis voluptatem
-                    recusandae rem vel totam exercitationem labore aperiam nihil! Culpa inventore illo eius similique
-                    fugiat eligendi ullam, nihil quas?
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="card handy-card my-2">
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sapiente veritatis voluptatem
-                    recusandae rem vel totam exercitationem labore aperiam nihil! Culpa inventore illo eius similique
-                    fugiat eligendi ullam, nihil quas?
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="card handy-card my-2">
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sapiente veritatis voluptatem
-                    recusandae rem vel totam exercitationem labore aperiam nihil! Culpa inventore illo eius similique
-                    fugiat eligendi ullam, nihil quas?
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="card handy-card my-2">
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sapiente veritatis voluptatem
-                    recusandae rem vel totam exercitationem labore aperiam nihil! Culpa inventore illo eius similique
-                    fugiat eligendi ullam, nihil quas?
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="card handy-card my-2">
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sapiente veritatis voluptatem
-                    recusandae rem vel totam exercitationem labore aperiam nihil! Culpa inventore illo eius similique
-                    fugiat eligendi ullam, nihil quas?
+                    <div class="h3 text-handy">{{ totalPatients | number }}</div>
+                    <div class="h6 text-muted">Total Patients</div>
                 </div>
             </div>
         </div>
 
-    </div>
-</div>
-
-
-<div class="container-fluid">
-    <div class="card handy-card my-2">
-        <div class="card-body">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. At eum, non eligendi modi aliquid nostrum officiis
-            aspernatur dicta ducimus temporibus iste dolorum minus dolore aliquam quis reiciendis commodi soluta beatae.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. At eum, non eligendi modi aliquid nostrum officiis
-            aspernatur dicta ducimus temporibus iste dolorum minus dolore aliquam quis reiciendis commodi soluta beatae.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. At eum, non eligendi modi aliquid nostrum officiis
-            aspernatur dicta ducimus temporibus iste dolorum minus dolore aliquam quis reiciendis commodi soluta beatae.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. At eum, non eligendi modi aliquid nostrum officiis
-            aspernatur dicta ducimus temporibus iste dolorum minus dolore aliquam quis reiciendis commodi soluta beatae.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. At eum, non eligendi modi aliquid nostrum officiis
-            aspernatur dicta ducimus temporibus iste dolorum minus dolore aliquam quis reiciendis commodi soluta beatae.
+        <div class="col-4">
+            <div class="card handy-card my-2">
+                <div class="card-body">
+                    <div class="h3 text-handy">{{ totalDrugs | number }}</div>
+                    <div class="h6 text-muted">Total Drugs</div>
+                </div>
+            </div>
         </div>
+
+        <div class="col-4">
+            <div class="card handy-card my-2">
+                <div class="card-body">
+                    <div class="h3 text-handy">{{ totalPrescriptions | number }}</div>
+                    <div class="h6 text-muted">Total Prescriptions</div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
