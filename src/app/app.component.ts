@@ -21,6 +21,11 @@ export class AppComponent {
   ) {
   }
 
+
+  onLogout() {
+    this.authService.logout();
+  }
+
   initContents() {
     this.authService.automaticAuthenticateUser();
     this.userIsAuthenticated = this.authService.getIsAuthenticated();

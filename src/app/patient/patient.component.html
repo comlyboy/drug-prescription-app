@@ -10,7 +10,7 @@
                 <span class="text-handy ml-2">{{ patient?.firstName | titlecase }}
                     {{ patient?.lastName | titlecase }}</span>
             </li>
-            <li *ngIf="viewMode == 'new'" class="breadcrumb-item active h5" aria-current="page">New branch
+            <li *ngIf="viewMode == 'new'" class="breadcrumb-item active h5" aria-current="page">New Patient
             </li>
         </ol>
     </nav>
@@ -18,7 +18,7 @@
 
 
 
-<div *ngIf="viewMode == 'list'" class="container-fluid">
+<div *ngIf="viewMode == 'list'" class="container">
     <div class="row d-flex justify-content-end my-4">
         <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3">
             <button (click)="viewMode = 'new'" matRipple class="btn ml-auto btn-lg btn-handy my-1 w-100">
@@ -212,8 +212,8 @@
         <div class="card-body text-center px-5">
             <form (submit)="onSubmitPatient(patientForm)" #patientForm="ngForm">
                 <div class="row">
-                    <div class="col-6">
 
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
                         <div class="h6 text-left mt-4 mb-1">First name</div>
                         <div class="input-group">
                             <div class="input-group-prepend bg-light" *ngIf="firstName.touched && firstName.valid">
@@ -235,7 +235,7 @@
                         </div>
                     </div>
 
-                    <div class="col-6">
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
                         <div class="h6 text-left mt-4 mb-1">Last name</div>
                         <div class="input-group">
                             <div class="input-group-prepend bg-light" *ngIf="lastName.touched && lastName.valid">
