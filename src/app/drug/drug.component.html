@@ -13,8 +13,7 @@
     </nav>
 </div>
 
-
-<div *ngIf="viewMode == 'list'" class="container-fluid">
+<div class="container">
     <div class="row d-flex justify-content-end my-4">
         <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
             <button (click)="viewMode = 'new'" matRipple class="btn ml-auto btn-lg btn-handy my-1 w-100">
@@ -22,9 +21,13 @@
             </button>
         </div>
     </div>
+</div>
+
+<div *ngIf="viewMode == 'list'" class="container-fluid">
+
     <div class="row">
         <div *ngFor="let drug of drugs" class=" col-sm-12 col-md-6 col-lg-4 col-xl-3">
-            <div class="card handy-border handy-card text-center text-muted my-2">
+            <div class="card handy-border handy-card pl-3 text-muted my-2">
                 <div class="d-flex justify-content-end pb-1 pt-2 px-2">
                     <mat-icon matTooltip="Click for options" matTooltipPosition="above" [matMenuTriggerFor]="menu"
                         class="pointer branch-more text-muted mb-0 mr-1">expand_more
@@ -43,7 +46,7 @@
                     </mat-menu>
                 </div>
                 <div class="card-body pt-0">
-                    <div class="h5 mb-0 text-handy">
+                    <div class="h5 text-handy">
                         {{ drug.name | titlecase }}
                     </div>
                     <div class="text-small mb-0">{{ drug.addedAt | date:'longDate' }},

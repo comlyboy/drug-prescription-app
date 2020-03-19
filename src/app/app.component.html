@@ -5,6 +5,7 @@
         </div>
         <div class="ml-auto mr-3 pointer" mat-icon-button [matMenuTriggerFor]="menu">
             <mat-icon class="text-handy">account_circle</mat-icon>
+            <mat-icon class="text-handy">expand_more</mat-icon>
         </div>  
         <mat-menu #menu="matMenu" xPosition="before">
             <ng-template matMenuContent>
@@ -18,7 +19,6 @@
                 </div>
             </ng-template>
         </mat-menu>
-        <!-- </div> -->
 
     </mat-toolbar>
     <mat-drawer #drawer class="sidebar lead font-weight-bold" mode="over">
@@ -27,8 +27,8 @@
             <div class="text-center py-3 p-0">
                 <p class="text-handy h4 mb-0">{{ title }}</p>
             </div>
-            <hr class="mt-0">
 
+            <hr class="mt-0">
             <ul class="mb-5 pl-0 pt-5">
 
                 <li (click)="drawer.close()" matRipple>
