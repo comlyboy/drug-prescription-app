@@ -20,12 +20,16 @@ export class PrescriptionComponent implements OnInit {
   prescriptions: IPrescription[] = [];
   drugs: IDrug[] = [];
   patients: IPatient[] = [];
+  prescription: IPrescription;
+  patient: IPatient;
+  drug: IDrug;
 
   totalPrescriptions: number = 0;
 
   prescriptionSub: Subscription;
   patientSub: Subscription;
   drugSub: Subscription;
+
 
   constructor(
     public dialogService: DialogService,
@@ -55,6 +59,48 @@ export class PrescriptionComponent implements OnInit {
     }, 700);
 
   }
+
+  onSubmitPrescriptionEdit(form: NgForm) {
+    if (form.invalid) {
+      return;
+    }
+    this.prescriptionService.updatePrescription
+      (
+        this.prescription._id,
+        form.value.inputFormula,
+        form.value.inputDuration,
+        form.value.inputDrugName,
+        form.value.inputPatientName
+      );
+
+    setTimeout(() => {
+      this.viewMode = "list"
+    }, 700);
+
+  };
+
+  onEditPrescriptionMode(prescriptionId: string) {
+    this.patientService.getPatients2()
+    .subscribe(patientsData => {
+      this.patients = patientsData.patients;
+    });;
+  this.drugService.getDrugs2()
+    .subscribe(drugData => {
+      this.drugs = drugData.drugs;
+    });;
+    this.prescriptionService.getPrescriptionDetails(prescriptionId)
+      .subscribe(prescriptionData => {
+        console.log(prescriptionData.patient)
+        console.log(prescriptionData.drug)
+        this.prescription = prescriptionData.prescription;
+        this.patient = prescriptionData.patient;
+        this.drug = prescriptionData.drug;
+      });;
+    setTimeout(() => {
+      this.viewMode = 'edit';
+    }, 700);
+  }
+
 
   onAdd() {
     this.patientService.getPatients2()

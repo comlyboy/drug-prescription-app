@@ -18,8 +18,10 @@
         <div class="card-body p-5">
             <hr>
             <div class="d-flex justify-content-between">
-                <div class="h5 text-handy">Dr. {{ doctor?.firstName |titlecase }} {{ doctor?.lastName | titlecase }}</div>
-                <div class="h6">Prescription Id: <span class="ml-3">{{ prescription?.prescriptionId }}</span></div>
+                <div class="h5 text-handy">Dr. {{ doctor?.firstName |titlecase }} {{ doctor?.lastName | titlecase }}
+                </div>
+                <div class="h6">Prescription Id: <span class="ml-4 text-handy">{{ prescription?.prescriptionId }}</span>
+                </div>
             </div>
 
             <div class="d-flex justify-content-between">
@@ -29,14 +31,22 @@
             </div>
 
             <div class="d-flex justify-content-between">
-                <div class="h6">09067545423</div>
+                <div class="h6">{{ doctor?.email }}</div>
+                <div class="h6">Status: <span *ngIf="!prescription.isTaken" class="ml-5 text-danger">Not
+                        taken</span>
+                    <span *ngIf="prescription.isTaken" class="ml-5 text-green">Taken</span>
+                </div>
+            </div>
 
+            <div class="d-flex justify-content-between">
+                <div class="h6">09067545423</div>
             </div>
 
             <hr>
-            <div class="h6 font-weight-bold"> {{ prescription?.formula }} of {{ drug?.name }}, to be taken
-                {{ prescription?.duration }}. </div>
+            <div class="h6 font-weight-bold"> {{ prescription?.formula }} tablet(s) of {{ drug?.name }}, to be taken
+                {{ prescription?.duration }} times daily. </div>
             <hr>
+            <div class="h6">Patient details.</div>
             <div class="row">
                 <div class="col-2">
                     <div class="h6 text-handy">Name.</div>

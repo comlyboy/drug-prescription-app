@@ -40,7 +40,9 @@ export class PatientService {
         `${this.API_URL}patient`, patientOBJ)
       .subscribe(() => {
         this.notificationService.success('Added successfully');
-        this.getPatients();
+        setTimeout(() => {
+          this.getPatients();
+        }, 1000);
       });
   };
 

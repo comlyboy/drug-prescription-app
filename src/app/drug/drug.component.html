@@ -45,7 +45,7 @@
                     </mat-menu>
                 </div>
                 <div class="card-body pt-0">
-                    <div [routerLink]='["/drugs", drug._id]' class="h5 mb-0 text-handy pointer">
+                    <div class="h5 mb-0 text-handy">
                         {{ drug.name | titlecase }}
                     </div>
                     <div class="text-small mb-0">{{ drug.addedAt | date:'longDate' }},
@@ -77,9 +77,9 @@
                                     <mat-icon class="text-green">done_all</mat-icon>
                                 </span>
                             </div>
-                            <input type="text" class="form-control form-control-lg" name="inputDrugName" [ngModel]="drug?.name"
-                                required minlength="3" autocomplete="off" placeholder="Drug name..." #name="ngModel"
-                                required>
+                            <input type="text" class="form-control form-control-lg" name="inputDrugName"
+                                [ngModel]="drug?.name" required minlength="3" autocomplete="off"
+                                placeholder="Drug name..." #name="ngModel" required>
                         </div>
                         <div class="alert alert-dark p-1 m-0" *ngIf="name.touched && !name.valid">
                             <div *ngIf="name.errors.required">
@@ -99,9 +99,9 @@
                                     <mat-icon class="text-green">done_all</mat-icon>
                                 </span>
                             </div>
-                            <textarea class="form-control form-control-lg" name="inputDescription" [ngModel]="drug?.description" required
-                                minlength="3" autocomplete="off" placeholder="Description..."
-                                #description="ngModel"></textarea>
+                            <textarea class="form-control form-control-lg" name="inputDescription"
+                                [ngModel]="drug?.description" required minlength="3" autocomplete="off"
+                                placeholder="Description..." #description="ngModel"></textarea>
                         </div>
                         <div class="alert alert-dark p-1 m-0" *ngIf="description.touched && !description.valid">
                             <div *ngIf="description.errors.required">

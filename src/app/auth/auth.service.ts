@@ -49,20 +49,19 @@ export class AuthService {
   }
 
   // Adding new user
-  createUser(firstName: string, lastName: string, userName: string, password: string) {
+  createUser(firstName: string, lastName: string, userName: string, email: string, password: string) {
     const signupData: IUser = {
       _id: null,
       firstName,
       lastName,
       userName,
+      email,
       password,
     };
-    
-    this.http.post(`${this.API_URL}user/signup`, signupData)
+
+    this.http.post(`${this.API_URL}signup`, signupData)
       .subscribe(response => {
         this.notificationService.success('Registered successfully');
-      }, error => {
-        console.log(error)
       });
   }
 
@@ -74,7 +73,7 @@ export class AuthService {
       password: password
     };
 
-    this.http.post<{ message: string, token: string, userId: string }>(`${this.API_URL}user/login`, loginData)
+    this.http.post<{ message: string, token: string, userId: string }>(`${this.API_URL}login`, loginData)
       .subscribe(response => {
         const _token = response.token;
         this.token = _token;

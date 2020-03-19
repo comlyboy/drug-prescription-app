@@ -49,18 +49,20 @@
                     <span *ngIf="prescription.status"
                         class="badge badge-danger bg-green badge-pill px-4 py-2 m-0">Taken</span>
                 </td>
-                <td> {{ prescription.patientId.firstName | titlecase }} {{ prescription.patientId.lastName | titlecase }}</td>
+                <td> {{ prescription.patientId.firstName | titlecase }}
+                    {{ prescription.patientId.lastName | titlecase }}</td>
 
                 <td>{{ prescription.drugId.name | titlecase }}
                 </td>
-                <td>{{ prescription.formula }}
+                <td>{{ prescription.formula }} tablets
                 </td>
-                <td>{{ prescription.duration }}
+                <td>{{ prescription.duration }} times daily
                 </td>
 
                 <td class="py-0">
                     <div class="d-flex justify-content-around my-1">
-                        <div matRipple matTooltip="Edit prescription details?" matTooltipPosition="above"
+                        <div (click)="onEditPrescriptionMode(prescription._id)" matRipple
+                            matTooltip="Edit prescription details?" matTooltipPosition="above"
                             class="pointer action-edit p-2">
                             <mat-icon>edit</mat-icon>
                         </div>
@@ -158,15 +160,12 @@
                                     <mat-icon class="text-green">done_all</mat-icon>
                                 </span>
                             </div>
-                            <input type="text" class="form-control form-control-lg" name="inputFormula" ngModel required
-                                minlength="3" autocomplete="off" placeholder="Formula..." #formula="ngModel" required>
+                            <input type="number" class="form-control form-control-lg" name="inputFormula" ngModel
+                                required autocomplete="off" placeholder="Formula..." #formula="ngModel" required>
                         </div>
                         <div class="alert alert-danger p-1 m-0" *ngIf="formula.touched && !formula.valid">
                             <div *ngIf="formula.errors.required">
                                 This field is required.
-                            </div>
-                            <div *ngIf="formula.errors.minlength">
-                                Minimum 3 characters needed.
                             </div>
                         </div>
                     </div>
@@ -179,41 +178,131 @@
                                     <mat-icon class="text-green">done_all</mat-icon>
                                 </span>
                             </div>
-                            <input type="text" class="form-control form-control-lg" name="inputDuration" ngModel
-                                required minlength="3" autocomplete="off" placeholder="Duration..." #duration="ngModel"
-                                required>
+                            <input type="number" class="form-control form-control-lg" name="inputDuration" ngModel
+                                required autocomplete="off" placeholder="Duration..." #duration="ngModel" required>
                         </div>
                         <div class="alert alert-danger p-1 m-0" *ngIf="duration.touched && !duration.valid">
                             <div *ngIf="duration.errors.required">
                                 This field is required.
                             </div>
-                            <div *ngIf="duration.errors.minlength">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end mb-2">
+                    <button (click)="viewMode = 'list'" mat-raised-button
+                        class="btn btn-danger btn-lg mt-5 mr-2">Cancel</button>
+                    <button mat-raised-button type="submit" class="btn btn-handy btn-lg mt-5 ml-3 py-1"
+                        [disabled]="!prescriptionForm.valid">Submit</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<div *ngIf="viewMode == 'edit'" class="container mt-5">
+    <div class="card handy-card">
+        <div class="card-header bg-transparent">
+            <div class="h5 mb-0 text-handy">New Prescription</div>
+        </div>
+        <div class="card-body px-5">
+
+            <form (submit)="onSubmitPrescriptionEdit(prescriptionForm)" #prescriptionForm="ngForm">
+                <div class="row">
+
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6">
+                        <div class="h6 text-left mt-4 mb-1">Drug Name</div>
+                        <div class="input-group">
+                            <div class="input-group-prepend bg-light" *ngIf="drugName.touched && drugName.valid">
+                                <span class="input-group-text bg-white">
+                                    <mat-icon class="text-green">done_all</mat-icon>
+                                </span>
+                            </div>
+                            <select class="form-control form-control-lg" name="inputDrugName" [ngModel]="drug?._id"
+                                required #drugName="ngModel">
+                                <option selected value="">Select drug...</option>
+                                <option *ngFor="let drug of drugs" [value]="drug._id">
+                                    {{  drug.name | titlecase }}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="alert alert-danger p-1 m-0" *ngIf="drugName.touched && !drugName.valid">
+                            <div *ngIf="drugName.errors.required">
+                                This field is required.
+                            </div>
+                            <div *ngIf="drugName.errors.minlength">
                                 Minimum 3 characters needed.
                             </div>
                         </div>
                     </div>
 
-                    <!-- <div class="col-12">
-                        <div class="h6 text-left mt-4 mb-1">Description</div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6">
+                        <div class="h6 text-left mt-4 mb-1">Patient Name</div>
                         <div class="input-group">
-                            <div class="input-group-prepend bg-light" *ngIf="description.touched && description.valid">
+                            <div class="input-group-prepend bg-light" *ngIf="patientName.touched && patientName.valid">
                                 <span class="input-group-text bg-white">
                                     <mat-icon class="text-green">done_all</mat-icon>
                                 </span>
                             </div>
-                            <textarea class="form-control form-control-lg" name="inputDescription" ngModel required
-                                minlength="3" autocomplete="off" placeholder="Description..."
-                                #description="ngModel"></textarea>
+                            <select class="form-control form-control-lg" name="inputPatientName"
+                                [ngModel]="patient?._id" required #patientName="ngModel">
+                                <option selected value="">Select patient...</option>
+                                <option *ngFor="let patient of patients" [value]="patient._id">
+                                    {{  patient.firstName | titlecase }}
+                                    {{  patient.lastName | titlecase }}
+                                </option>
+                            </select>
                         </div>
-                        <div class="alert alert-danger p-1 m-0" *ngIf="description.touched && !description.valid">
-                            <div *ngIf="description.errors.required">
+                        <div class="alert alert-danger p-1 m-0" *ngIf="patientName.touched && !patientName.valid">
+                            <div *ngIf="patientName.errors.required">
                                 This field is required.
                             </div>
-                            <div *ngIf="description.errors.minlength">
+                            <div *ngIf="patientName.errors.minlength">
                                 Minimum 3 characters needed.
                             </div>
                         </div>
-                    </div> -->
+                    </div>
+
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6">
+                        <div class="h6 text-left mt-4 mb-1">Formula</div>
+                        <div class="input-group">
+                            <div class="input-group-prepend bg-light" *ngIf="formula.touched && formula.valid">
+                                <span class="input-group-text bg-white">
+                                    <mat-icon class="text-green">done_all</mat-icon>
+                                </span>
+                            </div>
+                            <input type="number" class="form-control form-control-lg" name="inputFormula"
+                                [ngModel]="prescription?.formula" required autocomplete="off" placeholder="Formula..."
+                                #formula="ngModel" required>
+                        </div>
+                        <div class="alert alert-danger p-1 m-0" *ngIf="formula.touched && !formula.valid">
+                            <div *ngIf="formula.errors.required">
+                                This field is required.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6">
+                        <div class="h6 text-left mt-4 mb-1">Duration</div>
+                        <div class="input-group">
+                            <div class="input-group-prepend bg-light" *ngIf="duration.touched && duration.valid">
+                                <span class="input-group-text bg-white">
+                                    <mat-icon class="text-green">done_all</mat-icon>
+                                </span>
+                            </div>
+                            <input type="number" class="form-control form-control-lg" name="inputDuration"
+                                [ngModel]="prescription?.duration" required autocomplete="off" placeholder="Duration..."
+                                #duration="ngModel" required>
+                        </div>
+                        <div class="alert alert-danger p-1 m-0" *ngIf="duration.touched && !duration.valid">
+                            <div *ngIf="duration.errors.required">
+                                This field is required.
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="d-flex justify-content-end mb-2">

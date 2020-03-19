@@ -46,9 +46,10 @@ export class AuthComponent implements OnInit {
       form.value.inputFirstName,
       form.value.inputLastName,
       form.value.inputUserName,
+      form.value.inputEmail,
       form.value.inputPassword,
     );
-    this.viewMode = "login"
+    // this.viewMode = "login"
   }
 
 

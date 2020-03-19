@@ -100,10 +100,14 @@ export class PrescriptionService {
       drugId,
       patientId
     };
+    console.log(prescriptionForEdit);
     this.http
       .put(`${this.API_URL}prescription/${prescriptionId}`, prescriptionForEdit)
       .subscribe((result: any) => {
         this.notificationService.smallSuccess(result.message);
+        setTimeout(() => {
+          this.getPrescriptions();
+        }, 500);
       });
   }
 

@@ -148,6 +148,29 @@
                 </div>
 
                 <div class="input-group mt-2">
+                    <div class="input-group-prepend bg-light" *ngIf="email.touched && email.valid">
+                        <span class="input-group-text bg-white">
+                            <mat-icon class="text-green">done_all</mat-icon>
+                        </span>
+                    </div>
+                    <div class="input-group-prepend bg-light" *ngIf="email.touched && email.invalid">
+                        <span class="input-group-text bg-white">
+                            <mat-icon class="text-danger">clear</mat-icon>
+                        </span>
+                    </div>
+                    <input type="email" class="form-control form-control-lg" name="inputEmail" ngModel minlength="3"
+                        autocomplete="off" placeholder="Email..." #email="ngModel" required>
+                </div>
+                <div class="alert alert-danger p-1 m-0" *ngIf="email.touched && !email.valid">
+                    <div *ngIf="email.errors.required">
+                        This field is required.
+                    </div>
+                    <div *ngIf="email.errors.minlength">
+                        Minimum 3 characters needed.
+                    </div>
+                </div>
+
+                <div class="input-group mt-2">
                     <div class="input-group-prepend bg-light" *ngIf="password.touched && password.valid">
                         <span class="input-group-text bg-white">
                             <mat-icon class="text-green">done_all</mat-icon>

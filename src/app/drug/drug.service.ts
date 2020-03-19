@@ -37,7 +37,9 @@ export class DrugService {
         `${this.API_URL}drug`, drugOBJ)
       .subscribe(() => {
         this.notificationService.success('Added successfully');
-        this.getDrugs();
+        setTimeout(() => {
+          this.getDrugs();
+        }, 1000);
       });
   }
 
