@@ -1,5 +1,3 @@
-<app-header></app-header>
-
 <div class="container-fluid px-5">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb my-4 py-1">
@@ -63,12 +61,13 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="col-sm-12 col-md-8 col-lg-9 col-xl-9">
             <div class="card handy-card">
-                <div class="card-header bg-transparent d-flex justify-content-between">
-                    <div class="h5 mb-0 text-handy">Prescriptions</div>
-                    <div class="h5 mb-0 text-handy">{{ totalPrescriptions }}</div>
+                <div class="card-header bg-transparent">
+                    <div class="h5 mb-0 text-handy">Prescriptions <span
+                            class="ml-2 badge badge-info bg-handy">{{ totalPrescriptions }}</span>
+                    </div>
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered m-0">
@@ -76,8 +75,8 @@
                             <tr>
                                 <th scope="col">Date</th>
                                 <th scope="col">Drug Name</th>
+                                <th scope="col">Formula</th>
                                 <th scope="col">Duration</th>
-                                <th scope="col">Formular</th>
                                 <th scope="col">Actions</th>
                             </tr>
                         </thead>
@@ -86,22 +85,15 @@
                                 <td>{{ prescription?.createdAt | date:'mediumDate' }},
                                     {{ prescription?.createdAt | date:'shortTime' }}
                                 </td>
-                                <td>{{ prescription?.createdAt | date:'mediumDate' }},
-                                    {{ prescription?.createdAt | date:'shortTime' }}
+                                <td>{{ prescription?.drugId.name | titlecase }}
                                 </td>
-                                <td>{{ prescription?.createdAt | date:'mediumDate' }},
-                                    {{ prescription?.createdAt | date:'shortTime' }}
+                                <td>{{ prescription?.formula }} tablet(s)
                                 </td>
-                                <td>{{ prescription?.createdAt | date:'mediumDate' }},
-                                    {{ prescription?.createdAt | date:'shortTime' }}
+                                <td>{{ prescription?.duration }} time(s) daily
                                 </td>
 
                                 <td class="py-0">
                                     <div class="d-flex justify-content-around my-1">
-                                        <div matRipple matTooltip="Edit prescription details?"
-                                            matTooltipPosition="above" class="pointer action-edit p-2">
-                                            <mat-icon>edit</mat-icon>
-                                        </div>
 
                                         <div [routerLink]="['/prescriptions', prescription._id]" matRipple
                                             matTooltip="See details?" matTooltipPosition="above"
@@ -109,9 +101,9 @@
                                             <mat-icon>launch</mat-icon>
                                         </div>
 
-                                        <div matRipple matTooltip="Help" matTooltipPosition="above"
-                                            class="pointer action-delete p-2" matTooltip="Delete prescription?"
-                                            matTooltipPosition="above">
+                                        <div (click)="onDeleteDialog(prescription._id)" matRipple matTooltip="Help"
+                                            matTooltipPosition="above" class="pointer action-delete p-2"
+                                            matTooltip="Delete prescription?" matTooltipPosition="above">
                                             <mat-icon>delete</mat-icon>
                                         </div>
                                     </div>

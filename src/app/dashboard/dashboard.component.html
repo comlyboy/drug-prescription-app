@@ -1,18 +1,15 @@
-<!-- <app-header></app-header> -->
-
 <div class="container-fluid px-5">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb my-4 py-1">
             <li class="breadcrumb-item active h5 mb-0" aria-current="page">Dashboard
-                <!-- <span class="ml-2 badge badge-info bg-handy">{{ totalCustomers }}</span> -->
             </li>
         </ol>
     </nav>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid px-5">
     <div class="row">
-        <div class="col-4">
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
             <div class="card handy-card my-2">
                 <div class="card-body">
                     <div class="h3 text-handy">{{ totalPatients | number }}</div>
@@ -21,7 +18,7 @@
             </div>
         </div>
 
-        <div class="col-4">
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
             <div class="card handy-card my-2">
                 <div class="card-body">
                     <div class="h3 text-handy">{{ totalDrugs | number }}</div>
@@ -30,7 +27,7 @@
             </div>
         </div>
 
-        <div class="col-4">
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
             <div class="card handy-card my-2">
                 <div class="card-body">
                     <div class="h3 text-handy">{{ totalPrescriptions | number }}</div>
